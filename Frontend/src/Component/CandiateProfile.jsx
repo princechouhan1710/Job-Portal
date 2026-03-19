@@ -19,9 +19,9 @@ console.log(role)
 
     let url = "";
     if (role === "candidate") {
-      url = "http://localhost:4000/api/candidate/profile";
+      url = "/api/candidate/profile";
     } else if (role === "employer") {
-      url = "http://localhost:4000/api/organization/profile";
+      url = "/api/organization/profile";
     }
 const { data } = await axios.get(url, {
   headers: {

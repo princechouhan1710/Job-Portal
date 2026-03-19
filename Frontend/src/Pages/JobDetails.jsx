@@ -37,7 +37,7 @@ if(role !== "candidate"){
   try {
 
     const res = await axios.post(
-      `http://localhost:4000/api/job/apply/${job._id}`,
+      `/api/job/apply/${job._id}`,
       {},
       {
       headers: {

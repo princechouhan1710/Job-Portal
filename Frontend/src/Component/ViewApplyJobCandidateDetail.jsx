@@ -14,7 +14,7 @@ try{
 const token = localStorage.getItem("token");
 
 const { data } = await axios.get(
-`http://localhost:4000/api/job/job/${id}`,
+`/api/job/job/${id}`,
 {
 headers:{
 token: token
