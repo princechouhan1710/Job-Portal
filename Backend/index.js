@@ -17,7 +17,7 @@ let app = express();
 
   app.use(cors({
     origin: ["http://127.0.0.1:5500"
-  ,"http://localhost:5173","http://localhost:5174","http://localhost:5175","http://localhost:5176,https://job-portal-2vj6.onrender.com"], credentials: true,  
+  ,"http://localhost:5173","http://localhost:5174","http://localhost:5175","http://localhost:5176","https://job-portal-application-3hql.onrender.com"], credentials: true,  
   }));
 
   const path = require("path");
@@ -31,13 +31,15 @@ app.use("/api/organization",organizationRegister)
 app.use("/api/job",job)
  
 
- const __dirname1 = path.resolve();
 
-app.use(express.static(path.join(__dirname1, "Frontend", "dist")));
+//   serve frontend
+app.use(express.static(path.join(__dirname, "../Frontend/dist")));
 
+//  FIXED (no wildcard route)
 app.use((req, res) => {
-  res.sendFile(path.join(__dirname1, "Frontend", "dist", "index.html"));
+  res.sendFile(path.resolve(__dirname, "../Frontend/dist/index.html"));
 });
+
 
   app.use(errorhandler)
 
