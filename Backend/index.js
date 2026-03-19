@@ -31,17 +31,17 @@ app.use("/api/organization",organizationRegister)
 app.use("/api/job",job)
  
 
- //for serving the folder to the port
-  app.use(express.static(path.join(__dirname,"../Frontend/dist")))
+ const __dirname1 = path.resolve();
 
-  //for the main file
-  app.get("*",(req,res)=>{
-    res.sendFile(path.resolve(__dirname,"../Frontend/dist/index.html"))
-  })
+app.use(express.static(path.join(__dirname1, "Frontend", "dist")));
 
+app.use((req, res) => {
+  res.sendFile(path.join(__dirname1, "Frontend", "dist", "index.html"));
+});
 
   app.use(errorhandler)
 
   app.listen(4000, (err) => {
     console.log(err || "Server Run Port 4000")
   })
+
