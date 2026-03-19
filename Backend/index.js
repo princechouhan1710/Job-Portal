@@ -17,7 +17,7 @@ let app = express();
 
   app.use(cors({
     origin: ["http://127.0.0.1:5500"
-  ,"http://localhost:5173","http://localhost:5174","http://localhost:5175","http://localhost:5176"], credentials: true,  
+  ,"http://localhost:5173","http://localhost:5174","http://localhost:5175","http://localhost:5176,https://job-portal-2vj6.onrender.com"], credentials: true,  
   }));
 
   const path = require("path");
