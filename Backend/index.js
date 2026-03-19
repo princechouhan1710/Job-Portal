@@ -31,6 +31,15 @@ app.use("/api/organization",organizationRegister)
 app.use("/api/job",job)
  
 
+ //for serving the folder to the port
+  app.use(express.static(path.join(__dirname,"../Frontend/dist")))
+
+  //for the main file
+  app.get("*",(req,res)=>{
+    res.sendFile(path.resolve(__dirname,"../Frontend/dist/index.html"))
+  })
+
+
   app.use(errorhandler)
 
   app.listen(4000, (err) => {
