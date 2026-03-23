@@ -153,7 +153,7 @@ const getJobs = async () => {
 <div className="flex items-center gap-6">
 
 <img
-src={company.companyLogo.url}
+src={company?.companyLogo?.url}
 alt="company"
 className="w-24 h-24 rounded-full border"
 />
