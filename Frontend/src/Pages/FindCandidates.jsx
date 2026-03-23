@@ -95,7 +95,7 @@ function FindCandidates() {
                   <div className="flex gap-5 flex-1">
                     <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-gray-100">
                       <img
-                        src={candidate.image}
+                        src={candidate.profileImage?.url}
                         alt={candidate.name}
                         className="w-full h-full object-cover"
                       />

@@ -20,12 +20,23 @@ const registerOrganization = async (req, res) =>{
       companyLocation,
       companyDescription,
     } = req.body;
+    const campanylogo = req.files?.logo?.[0];
 
     const existingUser = await Organization.findOne({ companyEmail });
 
     if (existingUser) {
       return res.status(400).json({ message: "Email already registered" });
     }
+  if (!campanylogo) {
+  return res.status(400).json({
+    success: false,
+    message: "Company logo is required",
+  });
+}
+      const imageData = {
+  filename: campanylogo.filename,
+  url: process.env.BASEURL + campanylogo.filename,
+};
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -59,6 +70,7 @@ const registerOrganization = async (req, res) =>{
       otp: newOtp,
       otpExpiry: expireTime,
       isVerified: false,
+      companyLogo:imageData,
     });
 
     await newOrganization.save();

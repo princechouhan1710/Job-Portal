@@ -37,7 +37,7 @@ if(role !== "candidate"){
   try {
 
     const res = await axios.post(
-      `http://localhost:4000/api/job/apply/${job._id}`,
+      `/api/job/apply/${job._id}`,
       {},
       {
       headers: {
@@ -74,10 +74,10 @@ alert(err.response?.data?.message || err.message);
 
               <div className="w-20 h-20 rounded-xl overflow-hidden bg-gray-100 flex items-center justify-center">
                 <img
-                  src={job.companyLogo?.url || "https://picsum.photos/200"}
-                  alt="company"
-                  className="w-full h-full object-cover"
-                />
+  src={job?.companyName?.companyLogo?.url}
+  alt="Company Logo"
+  className="w-full h-full object-cover"
+/>
               </div>
 
               <div className="flex-1">

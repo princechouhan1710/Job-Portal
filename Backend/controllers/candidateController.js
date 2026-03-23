@@ -5,12 +5,9 @@ const otp = require("../utils/otp");
 const { sendEmail } = require("../utils/mail");
 const { generatetoken } = require("../utils/token.js");
 let path =require("path")
-console.log("BODY:", req.body);
-console.log("FILES:", req.files);
 const registerCandidate = async (req, res) => {
   try {
 const body = req.body || {};
-
 const {
   name,
   email,

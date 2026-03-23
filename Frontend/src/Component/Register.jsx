@@ -65,10 +65,10 @@ for (let key in formData) {
 }
 
     const response = await axios.post(
-      "http://localhost:4000/api/candidate/register",
+      "/api/candidate/register",
       data,
       {
-    
+    headers: { "Content-Type": "multipart/form-data" }
       }
     );
 
@@ -96,7 +96,7 @@ const verifyOtp = async (e) => {
 
   try {
     const res = await axios.post(
-      "http://localhost:4000/api/candidate/verifyotp",
+      "/api/candidate/verifyotp",
       otpform
     );
 
@@ -129,7 +129,7 @@ const otpResendHandler = async (e) => {
 
   try {
     await axios.post(
-      "http://localhost:4000/api/candidate/resendotp",
+      "/api/candidate/resendotp",
       Resendotpform
     );
 
@@ -165,7 +165,7 @@ const [loading, setLoading] = useState(false);
 
   try {
     const { data } = await axios.post(
-      "http://localhost:4000/api/candidate/login",
+      "/api/candidate/login",
       loginform
     );
 

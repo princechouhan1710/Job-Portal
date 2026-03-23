@@ -179,7 +179,7 @@ let [jobs,setJobs]=useState([])
 let [candidates,setCandidate]=useState([])
 const fetchCandidate = async () => {
   try {
-    const res = await axios.get("http://localhost:4000/api/candidate/all-profiles");
+    const res = await axios.get("/api/candidate/all-profiles");
     setCandidate(res.data.data);
     
   } catch (error) {
@@ -188,7 +188,7 @@ const fetchCandidate = async () => {
 };
 const fetchJobs =async()=>{
   try {
-    const job =await axios.get("http://localhost:4000/api/job/allJobs");
+    const job =await axios.get("/api/job/allJobs");
     setJobs(job.data.data)
   } catch (error) {
     console.log(error);

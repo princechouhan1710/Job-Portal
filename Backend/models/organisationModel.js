@@ -25,6 +25,12 @@ const organisationSchema = new mongoose.Schema(
     companySize: String,
     companyLocation: String,
     companyDescription: String,
+        companyLogo: {
+      filename: String,
+      url: String,
+    },
+    
+        role: { type: String, default: "employer" },
     otp: String,
     otpExpiry: String,    
     isVerified: { type: Boolean, default: false },

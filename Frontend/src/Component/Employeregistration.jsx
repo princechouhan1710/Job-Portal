@@ -27,7 +27,8 @@ phoneNumber: "",
 industry: "",
 companySize: "",
 companyLocation: "",
-companyDescription: ""
+companyDescription: "",
+  logo: null
 });
 
 const inputhandler = (e) => {
@@ -43,21 +44,30 @@ const submitHandler = async (e) => {
   setRegisterLoading(true);
 
   try {
+    const data = new FormData();
+
+    for (let key in formData) {
+      if (formData[key]) {
+        data.append(key, formData[key]);
+      }
+    }
+
     const response = await axios.post(
-      "http://localhost:4000/api/organization/register",
-      formData
+      "/api/organization/register",
+      data
     );
 
     if (response.data.success) {
       alert("Registration successful ✅ OTP sent");
 
       setOtpForm({
-  companyEmail: formData.companyEmail,
-  otp: "",
-});
+        companyEmail: formData.companyEmail,
+        otp: "",
+      });
 
       setOtp(true);
     }
+
   } catch (err) {
     alert(err.response?.data?.message || "Registration failed");
   } finally {
@@ -65,13 +75,21 @@ const submitHandler = async (e) => {
   }
 };
 
+const fileHandler = (e) => {
+  const { name, files } = e.target;
+
+  setFormdata((prev) => ({
+    ...prev,
+    [name]: files[0],
+  }));
+};
 const verifyOtp = async (e) => {
   e.preventDefault();
   setVerifyLoading(true);
 
   try {
     const res = await axios.post(
-      "http://localhost:4000/api/organization/verifyotp",
+      "/api/organization/verifyotp",
       otpform
     );
 
@@ -104,7 +122,7 @@ const otpResendHandler = async (e) => {
 
   try {
     await axios.post(
-      "http://localhost:4000/api/organization/resendotp",
+      "/api/organization/resendotp",
       Resendotpform
     );
 
@@ -140,7 +158,7 @@ const loginHandler = async (e) => {
 
   try {
     const res = await axios.post(
-      "http://localhost:4000/api/organization/login",
+      "/api/organization/login",
       loginform
     );
     console.log(res)
@@ -238,7 +256,12 @@ onChange={inputhandler}
 placeholder="Company Email"
 className="input"
 />
-
+<input
+  type="file"
+  name="logo"   
+  onChange={fileHandler}
+  className="input"
+/>
 <input
 type="password"
 name="password"

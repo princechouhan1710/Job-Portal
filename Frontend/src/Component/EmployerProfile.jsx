@@ -20,7 +20,7 @@ function EmployerProfile() {
       }
 
       const { data } = await axios.get(
-        "http://localhost:4000/api/organization/profile",
+        "/api/organization/profile",
         {
           headers: {
             token: token,
@@ -77,7 +77,7 @@ const postJobHandler = async (e) => {
     };
 
     const { data } = await axios.post(
-      "http://localhost:4000/api/job/createJOb",
+      "/api/job/createJOb",
       payload,
       {
         headers: {
@@ -90,7 +90,6 @@ const postJobHandler = async (e) => {
 
       alert("Job Posted Successfully ✅");
 
-      // reset form
       setJobData({
         jobTitle: "",
         jobDescription: "",
@@ -103,7 +102,6 @@ const postJobHandler = async (e) => {
         applicationDeadline: ""
       });
 
-      // 🔥 refresh jobs list
       getJobs();
 
     }
@@ -120,7 +118,7 @@ const getJobs = async () => {
     const token = localStorage.getItem("token");
 
     const { data } = await axios.get(
-      "http://localhost:4000/api/job/getJob",
+      "/api/job/getJob",
       {
         headers:{
           token: token
@@ -155,7 +153,7 @@ const getJobs = async () => {
 <div className="flex items-center gap-6">
 
 <img
-src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+src={company.companyLogo.url}
 alt="company"
 className="w-24 h-24 rounded-full border"
 />

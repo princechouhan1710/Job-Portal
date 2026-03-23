@@ -64,10 +64,9 @@ const getJob = async (req, res) => {
 
     const organizationId = req.user._id;
 
-    const jobs = await Job.find({ companyName: organizationId })
-      .populate("companyName", "location companyName")
-      .populate("applyCandidates","name email skills experience");
-
+  const jobs = await Job.find({ companyName: organizationId })
+  .populate("companyName", "companyName companyLocation companyLogo")
+  .populate("applyCandidates","name email skills experience");
     res.status(200).json({
       success: true,
       message: "Job fetched successfully",
@@ -84,9 +83,8 @@ const getJob = async (req, res) => {
 const getAllJobs = async (req, res) => {
   try {
 
-    const jobs = await Job.find()
-      .populate("companyName", "location companyName");
-
+   const jobs = await Job.find()
+  .populate("companyName", "companyName companyLocation companyLogo");
     if (!jobs || jobs.length === 0) {
       return res.status(404).json({
         success: false,

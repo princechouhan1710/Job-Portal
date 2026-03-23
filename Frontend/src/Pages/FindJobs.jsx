@@ -94,10 +94,10 @@ function FindJobs() {
 
                     <div className="w-20 h-20 rounded-xl overflow-hidden bg-gray-100 flex items-center justify-center">
                       <img
-                        src={job.companyLogo?.url || "/company.png"}
-                        alt="company"
-                        className="w-full h-full object-cover"
-                      />
+  src={job?.companyName?.companyLogo?.url}
+  alt="Company Logo"
+  className="w-full h-full object-cover"
+/>
                     </div>
 
                     <div className="flex-1">
