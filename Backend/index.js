@@ -22,6 +22,8 @@ let app = express();
 
   const path = require("path");
 
+  app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+  
 let candidateRegister =require("./routes/candidateRoute.js")
 let organizationRegister =require("./routes/organizationRoute.js")
 let job =require("./routes/jobRoute.js")

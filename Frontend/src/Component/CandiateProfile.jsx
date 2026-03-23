@@ -19,9 +19,9 @@ console.log(role)
 
     let url = "";
     if (role === "candidate") {
-      url = "/api/candidate/profile";
+      url = "http://localhost:4000/api/candidate/profile";
     } else if (role === "employer") {
-      url = "/api/organization/profile";
+      url = "http://localhost:4000/api/organization/profile";
     }
 const { data } = await axios.get(url, {
   headers: {
@@ -62,7 +62,7 @@ const logoutHandler = () => {
 <div className="flex flex-col items-center text-center">
 
 <img
-src={`https://randomuser.me/api/portraits/men/${Math.floor(Math.random()*10)}.jpg`}
+src={`https://randomuser.mehttp://localhost:4000/api/portraits/men/${Math.floor(Math.random()*10)}.jpg`}
 alt="profile"
 className="w-28 h-28 rounded-full border"
 />

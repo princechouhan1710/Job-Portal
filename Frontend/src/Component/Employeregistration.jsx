@@ -44,7 +44,7 @@ const submitHandler = async (e) => {
 
   try {
     const response = await axios.post(
-      "/api/organization/register",
+      "http://localhost:4000/api/organization/register",
       formData
     );
 
@@ -71,7 +71,7 @@ const verifyOtp = async (e) => {
 
   try {
     const res = await axios.post(
-      "/api/organization/verifyotp",
+      "http://localhost:4000/api/organization/verifyotp",
       otpform
     );
 
@@ -104,7 +104,7 @@ const otpResendHandler = async (e) => {
 
   try {
     await axios.post(
-      "/api/organization/resendotp",
+      "http://localhost:4000/api/organization/resendotp",
       Resendotpform
     );
 
@@ -140,7 +140,7 @@ const loginHandler = async (e) => {
 
   try {
     const res = await axios.post(
-      "/api/organization/login",
+      "http://localhost:4000/api/organization/login",
       loginform
     );
     console.log(res)

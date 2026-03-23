@@ -39,6 +39,8 @@ description: "",
 currentSalary: "",
 expectedSalary: "",
 experience: "",
+ image: null,    
+  resume: null
 });
 
 const inputhandler = (e) => {
@@ -54,9 +56,20 @@ const submitHandler = async (e) => {
   setRegisterLoading(true);
 
   try {
+  const data = new FormData();
+
+for (let key in formData) {
+  if (formData[key] !== null && formData[key] !== "") {
+    data.append(key, formData[key]);
+  }
+}
+
     const response = await axios.post(
-      "/api/candidate/register",
-      formData
+      "http://localhost:4000/api/candidate/register",
+      data,
+      {
+    
+      }
     );
 
     if (response.data.success) {
@@ -69,6 +82,7 @@ const submitHandler = async (e) => {
 
       setOtp(true);
     }
+
   } catch (err) {
     alert(err.response?.data?.message || "Registration failed");
   } finally {
@@ -82,7 +96,7 @@ const verifyOtp = async (e) => {
 
   try {
     const res = await axios.post(
-      "/api/candidate/verifyotp",
+      "http://localhost:4000/api/candidate/verifyotp",
       otpform
     );
 
@@ -115,7 +129,7 @@ const otpResendHandler = async (e) => {
 
   try {
     await axios.post(
-      "/api/candidate/resendotp",
+      "http://localhost:4000/api/candidate/resendotp",
       Resendotpform
     );
 
@@ -151,7 +165,7 @@ const [loading, setLoading] = useState(false);
 
   try {
     const { data } = await axios.post(
-      "/api/candidate/login",
+      "http://localhost:4000/api/candidate/login",
       loginform
     );
 
@@ -184,7 +198,13 @@ const [loading, setLoading] = useState(false);
   const logininputhandler = (e) => {
     setLoginForm({ ...loginform, [e.target.name]: e.target.value });
   };
-
+const fileHandler = (e) => {
+  const { name, files } = e.target;
+  setFormdata((prev) => ({
+    ...prev,
+    [name]: files[0],
+  }));
+};
 return (
 
 <>
@@ -195,7 +215,7 @@ return (
 
     <div className="text-center mb-8">
       <h2 className="text-3xl font-bold text-gray-800">
-        Create Your Account
+        Create Your Account  
       </h2>
       <p className="text-gray-500 text-sm mt-2">
         Join the platform and start applying for jobs
@@ -264,6 +284,7 @@ return (
             <option>Female</option>
             <option>Other</option>
           </select>
+     
 
         </div>
       </div>
@@ -286,6 +307,9 @@ return (
             placeholder="Country"
             className="input"/>
         </div>
+ <input type="file" name="image" onChange={fileHandler} style={{ border: "1px solid red", padding: "10px" }} />
+
+<input type="file" name="resume" onChange={fileHandler} style={{ border: "1px solid red", padding: "10px" }} />
       </div>
 
       <div>

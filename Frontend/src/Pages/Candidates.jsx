@@ -31,7 +31,7 @@ let navigate=useNavigate();
 
                 <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-gray-100">
                   <img
-         src={`https://randomuser.me/api/portraits/men/${Math.floor(Math.random()*10)}.jpg`}
+         src={`https://randomuser.mehttp://localhost:4000/api/portraits/men/${Math.floor(Math.random()*10)}.jpg`}
                     alt={candidate.name}
                     className="w-full h-full object-cover"
                   />

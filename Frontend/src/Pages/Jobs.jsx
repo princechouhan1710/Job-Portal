@@ -35,7 +35,7 @@ export default function Jobs() {
 
                 <div className="w-20 h-20 rounded-full overflow-hidden bg-gray-100 flex items-center justify-center">
                   <img
-         src={`https://randomuser.me/api/portraits/men/${Math.floor(Math.random()*10)}.jpg`}
+         src={`https://randomuser.mehttp://localhost:4000/api/portraits/men/${Math.floor(Math.random()*10)}.jpg`}
                     alt="Company Logo"
                     className="w-full h-full object-cover"
                   />

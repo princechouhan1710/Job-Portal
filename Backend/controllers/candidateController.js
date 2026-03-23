@@ -4,31 +4,37 @@ const bcrypt = require("bcryptjs");
 const otp = require("../utils/otp");
 const { sendEmail } = require("../utils/mail");
 const { generatetoken } = require("../utils/token.js");
-
+let path =require("path")
+console.log("BODY:", req.body);
+console.log("FILES:", req.files);
 const registerCandidate = async (req, res) => {
   try {
-    const {
-      name,
-      email,
-      password,
-      phone,
-      city,
-      state,
-      country,
-      category,
-      skills,
-      availability,
-      age,
-      Gender,
-      Language,
-      Education,
-      description,
-      currentSalary,
-      expectedSalary,
-      experience,
-    } = req.body;
+const body = req.body || {};
 
-    // Check existing user
+const {
+  name,
+  email,
+  password,
+  phone,
+  city,
+  state,
+  country,
+  category,
+  skills,
+  availability,
+  age,
+  Gender,
+  Language,
+  Education,
+  description,
+  currentSalary,
+  expectedSalary,
+  experience,
+} = body;
+    const profileImage = req.files?.image?.[0];
+const resume = req.files?.resume?.[0];
+
+    
     const existingUser = await Candidate.findOne({ email });
 
     if (existingUser) {
@@ -37,15 +43,27 @@ const registerCandidate = async (req, res) => {
         message: "Email already registered",
       });
     }
+if (!profileImage || !resume) {
+  return res.status(400).json({
+    success: false,
+    message: "Profile image and resume are required",
+  });
+}
+      const imageData = {
+  filename: profileImage.filename,
+  url: process.env.BASEURL + profileImage.filename,
+};
 
-    // Password Hash
+const resumeData = {
+  filename: resume.filename,
+  url: process.env.BASEURL + resume.filename,
+};
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Generate OTP
     const newOtp = otp();
     const expireTime = Date.now() + 10 * 60 * 1000;
 
-    // Send Email
     await sendEmail(
       email,
       "Verification OTP",
@@ -60,7 +78,6 @@ const registerCandidate = async (req, res) => {
       `
     );
 
-    // Create Candidate
     const newCandidate = new Candidate({
       name,
       email,
@@ -90,6 +107,8 @@ const registerCandidate = async (req, res) => {
       otp: newOtp,
       otpExpiry: expireTime,
       isVerified: false,
+      profileImage: imageData, 
+  resume: resumeData  
     });
 
     await newCandidate.save();
@@ -104,6 +123,8 @@ const registerCandidate = async (req, res) => {
       success: false,
       message: error.message,
     });
+    console.log("BODY:", req.body);
+console.log("FILES:", req.files);
   }
 };
 

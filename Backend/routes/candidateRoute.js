@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const upload = require("../middlewares/upload.js");
 
 const {
   registerCandidate,
@@ -11,7 +12,7 @@ const {
 
 const {auth} =require("../middlewares/auth.js")
 
-router.post("/register", registerCandidate);
+router.post("/register",  upload.fields([{ name: "image", maxCount: 1 },{ name: "resume", maxCount: 1 },]), registerCandidate);
 router.post("/resendotp", resendOtp);
 router.post("/verifyotp", verifyOtp);
 router.post("/login", login);

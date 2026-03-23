@@ -11,7 +11,7 @@ const role = localStorage.getItem("role");
 const ordercheck = () => {
 
   if (!token) {
-    navigate("/register");
+    navigate("/candidateRegister");
     return;
   }
 
@@ -22,7 +22,7 @@ const ordercheck = () => {
     navigate("/employeprofile");
   } 
   else {
-    navigate("/register");
+    navigate("/candidateRegister");
   }
 
 };

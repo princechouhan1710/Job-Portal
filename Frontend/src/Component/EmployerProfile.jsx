@@ -20,7 +20,7 @@ function EmployerProfile() {
       }
 
       const { data } = await axios.get(
-        "/api/organization/profile",
+        "http://localhost:4000/api/organization/profile",
         {
           headers: {
             token: token,
@@ -77,7 +77,7 @@ const postJobHandler = async (e) => {
     };
 
     const { data } = await axios.post(
-      "/api/job/createJOb",
+      "http://localhost:4000/api/job/createJOb",
       payload,
       {
         headers: {
@@ -120,7 +120,7 @@ const getJobs = async () => {
     const token = localStorage.getItem("token");
 
     const { data } = await axios.get(
-      "/api/job/getJob",
+      "http://localhost:4000/api/job/getJob",
       {
         headers:{
           token: token
