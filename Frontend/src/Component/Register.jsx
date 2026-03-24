@@ -248,150 +248,159 @@ return (
       </button>
     </div>
 
-    <form onSubmit={submitHandler} className="space-y-8">
+  <form onSubmit={submitHandler} className="space-y-8 max-w-5xl mx-auto">
 
-      <div>
-        <h3 className="text-lg font-semibold text-gray-700 mb-4 border-b pb-2">
-          Personal Information
-        </h3>
+  <div className="card">
+    <h3 className="section-title">👤 Personal Information</h3>
 
-        <div className="grid md:grid-cols-2 gap-4">
+    <div className="grid md:grid-cols-2 gap-4">
+      <input name="name" value={formData.name} onChange={inputhandler}
+        placeholder="Full Name" className="input" required />
 
-          <input name="name" value={formData.name} onChange={inputhandler}
-            placeholder="Full Name"
-            className="input"/>
+      <input type="email" name="email" value={formData.email} onChange={inputhandler}
+        placeholder="Email Address" className="input" required />
 
-          <input type="email" name="email" value={formData.email} onChange={inputhandler}
-            placeholder="Email Address"
-            className="input"/>
+      <input type="password" name="password" value={formData.password} onChange={inputhandler}
+        placeholder="Password" className="input" required />
 
-          <input type="password" name="password" value={formData.password} onChange={inputhandler}
-            placeholder="Password"
-            className="input"/>
+      <input name="phone" value={formData.phone} onChange={inputhandler}
+        placeholder="Phone Number" className="input" required />
 
-          <input name="phone" value={formData.phone} onChange={inputhandler}
-            placeholder="Mobile Number"
-            className="input"/>
+      <input type="number" name="age" value={formData.age} onChange={inputhandler}
+        placeholder="Age" className="input" />
 
-          <input type="number" name="age" value={formData.age} onChange={inputhandler}
-            placeholder="Age"
-            className="input"/>
+      <select name="Gender" value={formData.Gender} onChange={inputhandler}
+        className="input">
+        <option value="">Select Gender</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select>
+    </div>
+  </div>
 
-          <select name="Gender" value={formData.Gender} onChange={inputhandler}
-            className="input">
-            <option value="">Select Gender</option>
-            <option>Male</option>
-            <option>Female</option>
-            <option>Other</option>
-          </select>
-     
+  <div className="card">
+    <h3 className="section-title">📍 Location</h3>
 
-        </div>
-      </div>
+    <div className="grid md:grid-cols-3 gap-4">
+      <input name="city" value={formData.city} onChange={inputhandler}
+        placeholder="City" className="input" />
 
-      <div>
-        <h3 className="text-lg font-semibold text-gray-700 mb-4 border-b pb-2">
-          Location
-        </h3>
+      <input name="state" value={formData.state} onChange={inputhandler}
+        placeholder="State" className="input" />
 
-        <div className="grid md:grid-cols-3 gap-4">
-          <input name="city" value={formData.city} onChange={inputhandler}
-            placeholder="City"
-            className="input"/>
+      <input name="country" value={formData.country} onChange={inputhandler}
+        placeholder="Country" className="input" />
+    </div>
+  </div>
 
-          <input name="state" value={formData.state} onChange={inputhandler}
-            placeholder="State"
-            className="input"/>
+  <div className="card">
+    <h3 className="section-title">📁 Upload Files</h3>
 
-          <input name="country" value={formData.country} onChange={inputhandler}
-            placeholder="Country"
-            className="input"/>
-        </div>
- <input type="file" name="image" onChange={fileHandler} style={{ border: "1px solid red", padding: "10px" }} />
+    <div className="grid md:grid-cols-2 gap-6">
 
-<input type="file" name="resume" onChange={fileHandler} style={{ border: "1px solid red", padding: "10px" }} />
-      </div>
+      <label className="border-2 border-dashed border-gray-300 p-6 rounded-xl text-center cursor-pointer hover:bg-gray-50 transition">
+        <p className="text-sm text-gray-500">Upload Profile Image</p>
 
-      <div>
-        <h3 className="text-lg font-semibold text-gray-700 mb-4 border-b pb-2">
-          Professional Details
-        </h3>
+        <input type="file" name="image" onChange={fileHandler} className="hidden" />
 
-        <div className="grid md:grid-cols-2 gap-4">
+        {formData.image ? (
+          <img
+            src={URL.createObjectURL(formData.image)}
+            className="w-20 h-20 mx-auto mt-3 rounded-full border"
+          />
+        ) : (
+          <p className="text-xs text-gray-400 mt-2">Click to upload</p>
+        )}
+      </label>
 
-          <input name="category" value={formData.category} onChange={inputhandler}
-            placeholder="Job Category"
-            className="input"/>
+      <label className="border-2 border-dashed border-gray-300 p-6 rounded-xl text-center cursor-pointer hover:bg-gray-50 transition">
+        <p className="text-sm text-gray-500">Upload Resume</p>
 
-          <input name="skills" value={formData.skills} onChange={inputhandler}
-            placeholder="Skills (React, Node, UI)"
-            className="input"/>
+        <input type="file" name="resume" onChange={fileHandler} className="hidden" />
 
-          <input name="Language" value={formData.Language} onChange={inputhandler}
-            placeholder="Languages"
-            className="input"/>
+        {formData.resume ? (
+          <p className="text-green-600 mt-3 text-sm font-medium">
+            {formData.resume.name}
+          </p>
+        ) : (
+          <p className="text-xs text-gray-400 mt-2">Click to upload</p>
+        )}
+      </label>
 
-          <input name="Education" value={formData.Education} onChange={inputhandler}
-            placeholder="Education"
-            className="input"/>
+    </div>
+  </div>
 
-          <input type="number" name="experience" value={formData.experience}
-            onChange={inputhandler}
-            placeholder="Experience (Years)"
-            className="input"/>
+  <div className="card">
+    <h3 className="section-title">💼 Professional Details</h3>
 
-          <select name="availability" value={formData.availability}
-            onChange={inputhandler}
-            className="input">
-            <option value="">Availability</option>
-            <option>Full Time</option>
-            <option>Part Time</option>
-          </select>
+    <div className="grid md:grid-cols-2 gap-4">
 
-          <input type="number" name="currentSalary"
-            value={formData.currentSalary}
-            onChange={inputhandler}
-            placeholder="Current Salary"
-            className="input"/>
+      <input name="category" value={formData.category} onChange={inputhandler}
+        placeholder="Job Category" className="input" />
 
-          <input type="number" name="expectedSalary"
-            value={formData.expectedSalary}
-            onChange={inputhandler}
-            placeholder="Expected Salary"
-            className="input"/>
+      <input name="skills" value={formData.skills} onChange={inputhandler}
+        placeholder="Skills (React, Node)" className="input" />
 
-        </div>
+      <input name="Language" value={formData.Language} onChange={inputhandler}
+        placeholder="Languages (Hindi, English)" className="input" />
 
-        <textarea name="description"
-          value={formData.description}
-          onChange={inputhandler}
-          placeholder="Profile Description"
-          className="input h-24 mt-4"/>
-      </div>
+      <input name="Education" value={formData.Education} onChange={inputhandler}
+        placeholder="Education" className="input" />
 
-     <button
-  type="submit"
-  disabled={registerLoading}
-  className="w-full bg-green-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-700 transition duration-200 shadow-md"
->
-  {registerLoading ? "Registering..." : "Register"}
+      <input type="number" name="experience" value={formData.experience}
+        onChange={inputhandler}
+        placeholder="Experience (Years)"
+        className="input" />
+
+      <select name="availability" value={formData.availability}
+        onChange={inputhandler}
+        className="input">
+        <option value="">Availability</option>
+        <option>Full Time</option>
+        <option>Part Time</option>
+      </select>
+
+      <input type="number" name="currentSalary"
+        value={formData.currentSalary}
+        onChange={inputhandler}
+        placeholder="Current Salary"
+        className="input" />
+
+      <input type="number" name="expectedSalary"
+        value={formData.expectedSalary}
+        onChange={inputhandler}
+        placeholder="Expected Salary"
+        className="input" />
+    </div>
+
+    <textarea
+      name="description"
+      value={formData.description}
+      onChange={inputhandler}
+      placeholder="Tell us about yourself..."
+      className="input mt-4 h-24 resize-none"
+    />
+  </div>
+
+  <button type="submit" disabled={registerLoading} className="btn-primary">
+  {registerLoading ? "Creating Account..." : "Create Account"}
 </button>
 
-      <p className="text-center text-sm text-gray-500">
-        Already have an account?{" "}
-       <span
-  onClick={() => setLogin(true)}
-  className="text-green-600 cursor-pointer font-semibold"
->
-  Login
-</span>
-      </p>
+<p className="text-center text-sm text-gray-500">
+    Already have an account?{" "}
+    <span
+      onClick={() => setLogin(true)}
+      className="text-blue-600 cursor-pointer font-semibold"
+    >
+      Login
+    </span>
+  </p>
 
-    </form>
+</form>
   </div>
 </div>
 
-{/* Otp  */}
 <Dialog open={otp} onClose={() => setOtp(false)} className="relative z-50">
   <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center">
 
@@ -452,7 +461,6 @@ return (
   </div>
 </Dialog>
 
-     {/* Resend Otp  */}
     <Dialog open={resendOtp} onClose={() => setResendOtp(false)} className="relative z-50">
 
   <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center">
@@ -509,7 +517,6 @@ return (
 </Dialog>
 
 
-  {/* Login  */}
       <Dialog
         open={login}
         onClose={() => setLogin(false)}

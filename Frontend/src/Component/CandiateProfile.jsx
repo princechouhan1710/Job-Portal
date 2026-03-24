@@ -68,23 +68,23 @@ const logoutHandler = () => {
 />
 
 <h1 className="text-xl font-bold mt-4">
-{userProfile.name}
+{userProfile?.name}
 </h1>
 
 <p className="text-gray-600 text-sm">
-{userProfile.category}
+{userProfile?.category}
 </p>
 
 <p className="text-gray-500 text-sm mt-1">
-{userProfile.location?.city}, {userProfile.location?.state}
+{userProfile?.location?.city}, {userProfile?.location?.state}
 </p>
 
 </div>
 
 <div className="mt-6 space-y-2 text-sm text-gray-600">
 
-<p>📧 {userProfile.email}</p>
-<p>📞 {userProfile.phone}</p>
+<p>📧 {userProfile?.email}</p>
+<p>📞 {userProfile?.phone}</p>
 
 </div>
 
@@ -119,7 +119,7 @@ About Me
 </h2>
 
 <p className="text-gray-600">
-{userProfile.description || "No description added"}
+{userProfile?.description || "No description added"}
 </p>
 
 </div>
@@ -133,9 +133,9 @@ Skills
 
 <div className="flex flex-wrap gap-2">
 
-{userProfile.skills?.length ? (
+{userProfile?.skills?.length ? (
 
-userProfile.skills.map((skill,i)=>(
+userProfile?.skills.map((skill,i)=>(
 <span
 key={i}
 className="bg-blue-100 text-blue-600 px-3 py-1 text-sm rounded-full"
@@ -164,11 +164,11 @@ Experience
 </h2>
 
 <p className="text-gray-600">
-{userProfile.experience || 0} Years
+{userProfile?.experience || 0} Years
 </p>
 
 <p className="text-gray-600 mt-2">
-Availability: {userProfile.availability || "Not specified"}
+Availability: {userProfile?.availability || "Not specified"}
 </p>
 
 </div>
@@ -180,11 +180,11 @@ Salary
 </h2>
 
 <p className="text-gray-600">
-Current Salary: ₹{userProfile.currentSalary || 0} LPA
+Current Salary: ₹{userProfile?.currentSalary || 0} LPA
 </p>
 
 <p className="text-gray-600 mt-2">
-Expected Salary: ₹{userProfile.expectedSalary || 0} LPA
+Expected Salary: ₹{userProfile?.expectedSalary || 0} LPA
 </p>
 
 </div>
@@ -199,7 +199,7 @@ Education
 </h2>
 
 <p className="text-gray-600">
-{userProfile.Education || "Not added"}
+{userProfile?.Education || "Not added"}
 </p>
 
 </div>
@@ -213,9 +213,9 @@ Languages
 
 <div className="flex flex-wrap gap-2">
 
-{userProfile.Language?.length ? (
+{userProfile?.Language?.length ? (
 
-userProfile.Language.map((lang,i)=>(
+userProfile?.Language.map((lang,i)=>(
 <span
 key={i}
 className="bg-green-100 text-green-600 px-3 py-1 text-sm rounded-full"
@@ -241,10 +241,10 @@ className="bg-green-100 text-green-600 px-3 py-1 text-sm rounded-full"
 Resume
 </h2>
 
-{userProfile.resume?.url ? (
+{userProfile?.resume?.url ? (
 
 <a
-href={userProfile.resume.url}
+href={userProfile?.resume.url}
 target="_blank"
 className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700"
 >

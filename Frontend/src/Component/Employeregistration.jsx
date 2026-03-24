@@ -231,123 +231,146 @@ return (
       </button>
     </div>
 
-   <form onSubmit={submitHandler} className="space-y-8">
+   <form onSubmit={submitHandler} className="space-y-8 max-w-5xl mx-auto">
 
-<div>
-<h3 className="text-lg font-semibold text-gray-700 mb-4 border-b pb-2">
-Company Information
-</h3>
+  {/* COMPANY INFO */}
+  <div className="card">
+    <h3 className="section-title">🏢 Company Information</h3>
 
-<div className="grid md:grid-cols-2 gap-4">
+    <div className="grid md:grid-cols-2 gap-4">
 
-<input
-name="companyName"
-value={formData.companyName}
-onChange={inputhandler}
-placeholder="Company Name"
-className="input"
-/>
+      <input
+        name="companyName"
+        value={formData.companyName}
+        onChange={inputhandler}
+        placeholder="Company Name"
+        className="input"
+        required
+      />
 
-<input
-type="email"
-name="companyEmail"
-value={formData.companyEmail}
-onChange={inputhandler}
-placeholder="Company Email"
-className="input"
-/>
-<input
-  type="file"
-  name="logo"   
-  onChange={fileHandler}
-  className="input"
-/>
-<input
-type="password"
-name="password"
-value={formData.password}
-onChange={inputhandler}
-placeholder="Password"
-className="input"
-/>
+      <input
+        type="email"
+        name="companyEmail"
+        value={formData.companyEmail}
+        onChange={inputhandler}
+        placeholder="Company Email"
+        className="input"
+        required
+      />
 
-<input
-name="phoneNumber"
-value={formData.phoneNumber}
-onChange={inputhandler}
-placeholder="Company Phone"
-className="input"
-/>
+      <input
+        type="password"
+        name="password"
+        value={formData.password}
+        onChange={inputhandler}
+        placeholder="Password"
+        className="input"
+        required
+      />
 
-</div>
-</div>
+      <input
+        name="phoneNumber"
+        value={formData.phoneNumber}
+        onChange={inputhandler}
+        placeholder="Company Phone"
+        className="input"
+        required
+      />
+    </div>
 
-<div>
-<h3 className="text-lg font-semibold text-gray-700 mb-4 border-b pb-2">
-Company Details
-</h3>
+    {/* LOGO UPLOAD */}
+    <div className="mt-6">
+      <label className="block mb-2 text-sm text-gray-600 font-medium">
+        Company Logo
+      </label>
 
-<div className="grid md:grid-cols-2 gap-4">
+      <label className="border-2 border-dashed border-gray-300 p-6 rounded-xl text-center cursor-pointer hover:bg-gray-50 transition block">
+        <input
+          type="file"
+          name="logo"
+          onChange={fileHandler}
+          className="hidden"
+        />
 
-<input
-name="industry"
-value={formData.industry}
-onChange={inputhandler}
-placeholder="Industry (IT, Finance, Healthcare)"
-className="input"
-/>
+        {formData.logo ? (
+          <img
+            src={URL.createObjectURL(formData.logo)}
+            className="w-24 h-24 mx-auto rounded-full border"
+          />
+        ) : (
+          <p className="text-gray-400 text-sm">
+            Click to upload company logo
+          </p>
+        )}
+      </label>
+    </div>
+  </div>
 
-<select
-name="companySize"
-value={formData.companySize}
-onChange={inputhandler}
-className="input"
->
-<option value="">Company Size</option>
-<option>1-10 Employees</option>
-<option>11-50 Employees</option>
-<option>51-200 Employees</option>
-<option>201-500 Employees</option>
-<option>500+ Employees</option>
-</select>
+  {/* COMPANY DETAILS */}
+  <div className="card">
+    <h3 className="section-title">📊 Company Details</h3>
 
-<input
-name="companyLocation"
-value={formData.companyLocation}
-onChange={inputhandler}
-placeholder="Company Location"
-className="input"
-/>
+    <div className="grid md:grid-cols-2 gap-4">
 
-</div>
+      <input
+        name="industry"
+        value={formData.industry}
+        onChange={inputhandler}
+        placeholder="Industry (IT, Finance, Healthcare)"
+        className="input"
+      />
 
-<textarea
-name="companyDescription"
-value={formData.companyDescription}
-onChange={inputhandler}
-placeholder="Company Description"
-className="input h-28 mt-4"
-/>
+      <select
+        name="companySize"
+        value={formData.companySize}
+        onChange={inputhandler}
+        className="input"
+      >
+        <option value="">Company Size</option>
+        <option>1-10 Employees</option>
+        <option>11-50 Employees</option>
+        <option>51-200 Employees</option>
+        <option>201-500 Employees</option>
+        <option>500+ Employees</option>
+      </select>
 
-</div>
+      <input
+        name="companyLocation"
+        value={formData.companyLocation}
+        onChange={inputhandler}
+        placeholder="Company Location"
+        className="input"
+      />
+    </div>
 
-<button
-type="submit"
-disabled={registerLoading}
-className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition duration-200 shadow-md"
->
-{registerLoading ? "Registering..." : "Register Company"}
-</button>
+    <textarea
+      name="companyDescription"
+      value={formData.companyDescription}
+      onChange={inputhandler}
+      placeholder="Describe your company..."
+      className="input h-28 mt-4 resize-none"
+    />
+  </div>
 
-<p className="text-center text-sm text-gray-500">
-Already have an account?{" "}
-<span
-onClick={() => setLogin(true)}
-className="text-blue-600 cursor-pointer font-semibold"
->
-Login
-</span>
-</p>
+  {/* BUTTON */}
+  <button
+    type="submit"
+    disabled={registerLoading}
+    className="btn-primary"
+  >
+    {registerLoading ? "Registering..." : "Register Company"}
+  </button>
+
+  {/* LOGIN LINK */}
+  <p className="text-center text-sm text-gray-500">
+    Already have an account?{" "}
+    <span
+      onClick={() => setLogin(true)}
+      className="text-blue-600 cursor-pointer font-semibold"
+    >
+      Login
+    </span>
+  </p>
 
 </form>
   </div>

@@ -160,23 +160,23 @@ className="w-24 h-24 rounded-full border"
 
 <div>
 <h1 className="text-3xl font-bold text-gray-800">
-{company.companyName}
+{company?.companyName}
 </h1>
 
 <p className="text-blue-600 font-medium">
-{company.industry}
+{company?.industry}
 </p>
 
 <p className="text-gray-500 text-sm mt-1">
- {company.companyLocation}
+ {company?.companyLocation}
 </p>
 
 <p className="text-gray-500 text-sm">
- {company.companyEmail}
+ {company?.companyEmail}
 </p>
 
 <p className="text-gray-500 text-sm">
- {company.phoneNumber}
+ {company?.phoneNumber}
 </p>
 </div>
 
@@ -208,7 +208,7 @@ About Company
 </h2>
 
 <p className="text-gray-600 leading-relaxed">
-{company.companyDescription || "No company description available"}
+{company?.companyDescription || "No company description available"}
 </p>
 </div>
 
@@ -220,11 +220,11 @@ Company Information
 </h2>
 
 <p className="text-gray-600">
-Industry: {company.industry}
+Industry: {company?.industry}
 </p>
 
 <p className="text-gray-600 mt-2">
-Company Size: {company.companySize}
+Company Size: {company?.companySize}
 </p>
 
 </div>
@@ -236,15 +236,15 @@ Contact Information
 </h2>
 
 <p className="text-gray-600">
-Email: {company.companyEmail}
+Email: {company?.companyEmail}
 </p>
 
 <p className="text-gray-600 mt-2">
-Phone: {company.phoneNumber}
+Phone: {company?.phoneNumber}
 </p>
 
 <p className="text-gray-600 mt-2">
-Location: {company.companyLocation}
+Location: {company?.companyLocation}
 </p>
 
 </div>
